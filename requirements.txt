@@ -1,5 +1,5 @@
 os
-fitparse
+fitparse == 1.2.0
 pandas
 streamlit
 base64
