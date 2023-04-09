@@ -35,7 +35,7 @@ def download_csv(df):
 def app():
 
     st.set_page_config(page_title='Parse .fit File')
-    st.sidebar.image(image, use_column_width=True)
+    st.sidebar.image(image, use_column_width=False)
     st.sidebar.title("This is an app for downloading .FIT files as a csv file")
     file = st.sidebar.file_uploader('Upload .fit File', type='.fit')
 
