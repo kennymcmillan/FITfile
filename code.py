@@ -3,7 +3,7 @@ import fitparse
 import pandas as pd
 import streamlit as st
 import base64
-import Pillow as PIL
+
 
 from PIL import Image
 image = Image.open('logo.png') 
