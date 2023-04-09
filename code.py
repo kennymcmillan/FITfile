@@ -4,6 +4,9 @@ import pandas as pd
 import streamlit as st
 import base64
 
+from PIL import Image
+image = Image.open('logo.png') 
+
 
 def parse_fit_file(file):
     # Load the .fit file
