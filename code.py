@@ -51,10 +51,9 @@ def app():
 
         st.write(df)
 
-        if st.button('Download CSV'):
+        if st.button('Process a CSV file'):
             download_csv(df)
             download_location = os.path.join(os.path.expanduser("~"), "Downloads")
-
 
 
 # Run the Streamlit app
