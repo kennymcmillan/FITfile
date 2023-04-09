@@ -29,13 +29,13 @@ def download_csv(df):
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
     href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download file to Downloads Folder</a>'
-    st.sidebar.markdown(href, unsafe_allow_html=True)
+    st.markdown(href, unsafe_allow_html=True)
 
 
 def app():
 
     st.set_page_config(page_title='Parse .fit File')
-    st.sidebar.image(image, use_column_width=False)
+    st.sidebar.image(image, use_column_width=True)
     st.sidebar.title("This is an app for downloading .FIT files as a csv file")
     file = st.sidebar.file_uploader('Upload .fit File', type='.fit')
 
@@ -51,7 +51,7 @@ def app():
 
         st.write(df)
 
-        if st.sidebar.button('Download CSV'):
+        if st.button('Download CSV'):
             download_csv(df)
             download_location = os.path.join(os.path.expanduser("~"), "Downloads")
 
