@@ -6,7 +6,7 @@ import base64
 
 
 from PIL import Image
-image = Image.open('logo.png') 
+image = Image.open('Aspire_Academy_logo_white.png') 
 
 
 def parse_fit_file(file):
