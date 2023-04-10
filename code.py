@@ -19,8 +19,16 @@ def parse_fit_file(file):
     df['time'] = (df['timestamp'] - start_time).apply(lambda x: x.total_seconds() + 1)
 
     df = df.drop('unknown_87', axis=1)
+    
     df = df.drop(df.columns[[6, 10, 11,12,13,14]], axis=1)
     df['left_right_balance'] = pd.to_numeric(df['left_right_balance'], errors='coerce')
+    
+    start_date = df['timestamp'].min().strftime('%d-%m-%Y')
+    st.write(f"Date: {start_date}")
+    time_col = df.pop('time')
+    df.insert(0, 'time', time_col)
+    df['time'] = df['time'].astype(int)
+    df['distance'] = df['distance'].apply(lambda x: round(x, 1))
 
     return df
 
@@ -42,13 +50,6 @@ def app():
     if file is not None:
         df = parse_fit_file(file)
         
-        start_date = df['timestamp'].min().strftime('%d-%m-%Y')
-        st.write(f"Date: {start_date}")
-        time_col = df.pop('time')
-        #df.insert(0, 'time', time_col)
-        #df['time'] = df['time'].astype(int)
-        df['distance'] = df['distance'].apply(lambda x: round(x, 1))
-
         st.write(df)
 
         if st.button('Process a CSV file'):
