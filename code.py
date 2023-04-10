@@ -45,8 +45,8 @@ def app():
         start_date = df['timestamp'].min().strftime('%d-%m-%Y')
         st.write(f"Date: {start_date}")
         time_col = df.pop('time')
-        df.insert(0, 'time', time_col)
-        df['time'] = df['time'].astype(int)
+        #df.insert(0, 'time', time_col)
+        #df['time'] = df['time'].astype(int)
         df['distance'] = df['distance'].apply(lambda x: round(x, 1))
 
         st.write(df)
