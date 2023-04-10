@@ -5,7 +5,7 @@ import streamlit as st
 import base64
 
 from PIL import Image
-#image = Image.open('Aspire_Academy_Logo_White.png')
+image = Image.open('Aspire_Academy_Logo_White.png')
 
 def parse_fit_file(file):
     # Load the .fit file
@@ -33,7 +33,7 @@ def download_csv(df):
 def app():
 
     st.set_page_config(page_title='Parse .fit File')
-   # st.sidebar.image(image, use_column_width=True)
+    st.sidebar.image(image, use_column_width=True)
     st.sidebar.title("This is an app for downloading .FIT files as a csv file")
     file = st.sidebar.file_uploader('Upload .fit File', type='.fit')
 
