@@ -3,11 +3,9 @@ import fitparse
 import pandas as pd
 import streamlit as st
 import base64
-
-
 from PIL import Image
-image = Image.open('Aspire_Academy_Logo_White.png') 
 
+image = Image.open('Aspire_Academy_Logo_White.png') 
 
 def parse_fit_file(file):
     # Load the .fit file
@@ -21,9 +19,11 @@ def parse_fit_file(file):
     df['time'] = (df['timestamp'] - start_time).apply(lambda x: x.total_seconds() + 1)
 
     df = df.drop('unknown_87', axis=1)
-    #df = df.drop('timestamp', axis=1)
+    df = df.drop(df.columns[[6, 10, 11,12,13,14]], axis=1)
+    df['left_right_balance'] = pd.to_numeric(df['left_right_balance'], errors='coerce')
 
     return df
+
 
 def download_csv(df):
     csv = df.to_csv(index=False)
@@ -41,9 +41,9 @@ def app():
 
     if file is not None:
         df = parse_fit_file(file)
+        
         start_date = df['timestamp'].min().strftime('%d-%m-%Y')
         st.write(f"Date: {start_date}")
-
         time_col = df.pop('time')
         df.insert(0, 'time', time_col)
         df['time'] = df['time'].astype(int)
